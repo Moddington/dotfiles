@@ -46,6 +46,32 @@ install_symlink() {
 }
 export -f install_symlink
 
+# default_install()
+# @desc - the default install method when a source does not provide a script
+# @note - simply installs all files in the source
+#         skips vim tempfiles for less headaches
+#         skips the script that calls this function, so this can be used as a stub/fallback in a script
+default_install() {
+	dir="$HOME"
+	skipped=0
+
+	shopt -s dotglob
+	for file in *
+	do
+		if [[ -e "$file" && ! "$file" -ef "$0" && "${file##*.}" != "swp" ]] # Don't install the caller script, or vim temporary files
+		then
+			if ! install_symlink "$file" "$dir"/"$file"; then skipped=1; fi
+		fi
+	done
+
+	if [[ "$skipped" = 1 ]]
+	then
+		echo "One or more file conflicts encountered.  Please resolve the conflicts and run this script again."
+		exit 1
+	fi
+}
+export -f default_install
+
 if [[ -z "$@" ]]; then echo "No sources listed, quitting..."; exit 1; fi
 
 for var in "$@"
@@ -53,8 +79,8 @@ do
 	if [[ ! -d "$var" ]]; then echo "No such source named '$var', quitting..."; exit 1; fi
 
 	>/dev/null cd "$var"
-		if [[ ! -f ./install.sh ]]; then echo "No install script found for source named '$var', quitting..."; exit 1; fi
-
+	if [[ -f ./install.sh ]]
+	then
 		if ./install.sh
 		then
 			echo "Install script for source named '$var' completed successfully."
@@ -62,6 +88,15 @@ do
 			echo "Install script failed for source named '$var', quitting..."
 			exit 1
 		fi
+	else
+		if default_install
+		then
+			echo "Install script for source named '$var' completed successfully."
+		else
+			echo "Install script failed for source named '$var', quitting..."
+			exit 1
+		fi
+	fi
 	>/dev/null cd -
 done
 
