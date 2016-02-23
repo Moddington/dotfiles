@@ -1,0 +1,8 @@
+[user]
+	name = Nathan Janzen
+	email = moddington@gmail.com
+[core]
+	editor = vim
+	excludesfile = /home/dundas/.gitignore
+[push]
+	default = simple
