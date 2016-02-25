@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# ================================================================================
+#  Exported helper functions
+# ================================================================================
+
 # install_symlink(file, location)
 # @desc - install a file as a symlink
 # @param file - location of the source file
@@ -72,8 +76,19 @@ default_install() {
 }
 export -f default_install
 
+
+# ================================================================================
+#  Installation procedure
+# ================================================================================
+
+# Handle arguments
 if [[ -z "$@" ]]; then echo "No sources listed, quitting..."; exit 1; fi
 
+# Ensure submodules are updated
+git submodule init
+git submodule update
+
+# Install selected sources
 for var in "$@"
 do
 	if [[ ! -d "$var" ]]; then echo "No such source named '$var', quitting..."; exit 1; fi
@@ -100,4 +115,5 @@ do
 	>/dev/null cd -
 done
 
+# Quit
 echo "All install scripts completed successfully"
