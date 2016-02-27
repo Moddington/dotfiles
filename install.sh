@@ -7,7 +7,7 @@
 # install_symlink(file, location)
 # @desc - install a file as a symlink
 # @param file - location of the source file
-# @param location - directory to place the symlink
+# @param location - location to place the symlink
 # @note - when 'file' does not exist, it is a programming error, and exit is called
 #         when 'location' already exists, and not because it is already properly installed,
 #         the user is prompted whether to overwrite it (so long as it is not a directory),
@@ -23,7 +23,7 @@ install_symlink() {
 
 	if [[ -a "$location" ]]
 	then
-		if [[ ! -L "$location" && ! "$location" -ef "$target" ]]
+		if [[ ! "$location" -ef "$target" ]]
 		then
 			if [[ -d "$location" ]]
 			then
