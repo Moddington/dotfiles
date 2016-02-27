@@ -1,0 +1,48 @@
+URxvt*.depth: 32
+URxvt*.background: #000000
+URxvt*.foreground: #007fff
+URxvt*.colorBD: #7fafff
+URxvt*.transparent: true
+! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
+URxvt*.shading: 15
+
+URxvt*.color0: #262626
+URxvt*.color1: #ff0000
+URxvt*.color2: #00ff00
+URxvt*.color3: #ffff00
+URxvt*.color4: #0000ff
+URxvt*.color5: #ff00ff
+URxvt*.color6: #00ffff
+URxvt*.color7: #cdcdcd
+URxvt*.color8: #4c4c4c
+URxvt*.color9: #ff4444
+URxvt*.color10: #44ff44
+URxvt*.color11: #ffff44
+URxvt*.color12: #4444ff
+URxvt*.color13: #ff44ff
+URxvt*.color14: #44ffff
+URxvt*.color15: #ffffff
+
+URxvt*.scrollBar: false
+URxvt*.scrollTtyOutput: false
+URxvt*.scrollWithBuffer: true
+URxvt*.scrollTtyKeypress: true
+
+URxvt*.pointerColor: #000000
+URxvt*.pointerColor2: #ffffff
+URxvt*.pointerBlank: true
+URxvt*.pointerBlankDelay: 5
+
+URxvt*.font: xft:Clean:size=8
+URxvt*.boldFont: xft:Clean:size=8
+URxvt*.antialias: false
+
+URxvt*.inputMethod:scim
+URxvt*.imLocale:en_US.UTF-8
+
+! Perl Extensions
+URxvt*.perl-common:
+URxvt*.perl-ext-common: default,matcher
+
+URxvt*.url-launcher: /usr/bin/firefox
+URxvt*.matcher.button: 1
