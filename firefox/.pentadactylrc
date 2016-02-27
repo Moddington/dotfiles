@@ -1,0 +1,27 @@
+loadplugins '\.(js|penta)$'
+group user
+map -count -modes=n,v <A-Left> <Nop>
+map -count -modes=n,v <A-Right> <Nop>
+map -count -modes=n,v <C-Tab> <Nop>
+map -count -modes=n,v <C-S-Tab> <Nop>
+map -count -modes=n,v <C-h> <count>:ba!<Return>
+map -count -modes=n,v <C-l> <count>:fa!<Return>
+map -count -modes=n,v <F1> <count>:tab<Space>help<Return>
+map -count -modes=n,v > <count>:tn<Space><count><Return>
+map -count -modes=n,v d <count>:tabclose<Return>
+map -count -modes=n,v <lt> <count>:tp<Space><count><Return>
+"set defsearch=g
+set maxitems=5
+set passkeys=feedly.com:jkvr
+set passunknown=insert,ex
+"set tabclose=right,opener,left
+"set tabopen=link:end,external:end,orphan:end
+
+command private-tab -nargs=0 -description "Open Private Tab" -javascript <<EOF
+	privateTab.readyToOpenTab(true);
+	gBrowser.addTab("about:blank");
+	dactyl.execute(":tablast");
+	privateTab.stopToOpenTabs();
+EOF
+
+" vim: set ft=pentadactyl:
