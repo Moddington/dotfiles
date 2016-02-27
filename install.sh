@@ -11,7 +11,7 @@
 # @note - when 'file' does not exist, it is a programming error, and exit is called
 #         when 'location' already exists, and not because it is already properly installed,
 #         the user is prompted whether to overwrite it (so long as it is not a directory),
-#         otherwise it is skipped and 1 is returned
+#         otherwise it is skipped, $skipped is set to 1, and 1 is returned
 #         when the directory for 'location' does not exist, it will be created
 install_symlink() {
 	file="$1"
@@ -28,6 +28,7 @@ install_symlink() {
 			if [[ -d "$location" ]]
 			then
 				echo "File '$location' already exists, and is a directory, skipping..."
+				skipped_file=1
 				return 1
 			else
 				echo "File '$location' already exists"
@@ -39,6 +40,7 @@ install_symlink() {
 					ln -s "$target" "$location"
 				else
 					echo "Skipping..."
+					skipped_file=1
 					return 1
 				fi
 			fi
@@ -55,16 +57,14 @@ export -f install_symlink
 # @note - simply installs all files in the source
 #         skips vim tempfiles for less headaches
 #         skips the script that calls this function, so this can be used as a stub/fallback in a script
+#         also useful as a template for install scripts
 default_install() {
-	dir="$HOME"
-	skipped=0
-
 	shopt -s dotglob
 	for file in *
 	do
 		if [[ -e "$file" && ! "$file" -ef "$0" && "${file##*.}" != "swp" ]] # Don't install the caller script, or vim temporary files
 		then
-			if ! install_symlink "$file" "$dir"/"$file"; then skipped=1; fi
+			install_symlink "$file" ~/"$file"
 		fi
 	done
 
@@ -94,6 +94,7 @@ do
 	if [[ ! -d "$var" ]]; then echo "No such source named '$var', quitting..."; exit 1; fi
 
 	>/dev/null cd "$var"
+	export skipped=0
 	if [[ -f ./install.sh ]]
 	then
 		if ./install.sh
