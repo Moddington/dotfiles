@@ -25,7 +25,7 @@ myConfig = defaultConfig
 		, handleEventHook    = fullscreenEventHook
 		, manageHook         = fullscreenManageHook
 		, layoutHook         = myLayout
-        , logHook            = updatePointer (Relative 0.5 0.5)
+		, logHook            = updatePointer (0.5, 0.5) (0, 0)
 		} `additionalKeys`
 		[ ((myModMask, xK_x), spawn "xscreensaver-command -lock")
 		, ((myModMask .|. shiftMask, xK_x), spawn "xscreensaver-command -lock && xset dpms force off")
