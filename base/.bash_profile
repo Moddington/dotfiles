@@ -4,4 +4,4 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-PATH=~/.bin:$PATH
+PATH=~/System/bin:$PATH
