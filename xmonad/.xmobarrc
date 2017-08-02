@@ -10,7 +10,7 @@ Config {
        -- layout
        sepChar = "%",
        alignSep = "}{",
-       template = " %StdinReader% <fc=#007fff>|</fc> %cpu% %coretemp% <fc=#007fff>|</fc> %memory% (%swap%) <fc=#007fff>]</fc> }{ <fc=#007fff>[</fc> %CYYC% <fc=#007fff>|</fc> %date% ",
+       template = " %StdinReader% <fc=#007fff>|</fc> %cpu% %coretemp% <fc=#007fff>|</fc> %memory% (%swap%) <fc=#007fff>|</fc> %battery% <fc=#007fff>]</fc> }{ <fc=#007fff>[</fc> %CYYC% <fc=#007fff>|</fc> %date% ",
 --     template = " %StdinReader% <fc=#007fff>|</fc> %cpu% %coretemp% <fc=#007fff>|</fc> %memory% (%swap%) <fc=#007fff>]</fc> }{ <fc=#007fff>[</fc> %mpd% <fc=#007fff>|</fc> %default:Master% <fc=#007fff>|</fc> %CYYC% <fc=#007fff>|</fc> %date% ",
 
        lowerOnStart = True,
