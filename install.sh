@@ -38,7 +38,7 @@ install_symlink() {
 				then
 					rm "$location"
 					ln -s "$target" "$location"
-					if $?
+					if (( $? ))
 					then
 						echo "Unknown error creating link, skipping..."
 						skipped_file=1
@@ -58,7 +58,7 @@ install_symlink() {
 			rm "$location"
 		fi
 		ln -s "$target" "$location"
-		if $?
+		if (( $? ))
 		then
 			echo "Unknown error creating link, skipping..."
 			skipped_file=1
