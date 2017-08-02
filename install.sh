@@ -38,6 +38,11 @@ install_symlink() {
 				then
 					rm "$location"
 					ln -s "$target" "$location"
+					if $? then
+						echo "Unknown error creating link, skipping..."
+						skipped_file=1
+						return 1
+					fi
 				else
 					echo "Skipping..."
 					skipped_file=1
@@ -47,7 +52,16 @@ install_symlink() {
 		fi
 	else
 		[[ ! -d "$location_dir" ]] && mkdir -p "$location_dir"
+		if [[ -h "$location" ]]
+		then
+			rm "$location"
+		fi
 		ln -s "$target" "$location"
+		if $? then
+			echo "Unknown error creating link, skipping..."
+			skipped_file=1
+			return 1
+		fi
 	fi
 }
 export -f install_symlink
