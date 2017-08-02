@@ -14,6 +14,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 xbindkeys
 xmodmap ~/.Xmodmap
 xrdb ~/.Xresources
+setxkbmap -option compose:ralt
 xsetroot -cursor_name left_ptr
 ~/.screenlayout/default.sh
 
