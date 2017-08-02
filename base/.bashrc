@@ -33,7 +33,7 @@ alias gits='git status'
 alias gitsl='git shortlog'
 __git_complete gitsl _git_shortlog
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --group-directories-first'
 
 alias dieinafire='rm -rf --'
 alias perishinholyflames='sudo rm -rf --'
