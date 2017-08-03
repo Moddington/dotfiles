@@ -84,7 +84,7 @@ default_install() {
 		fi
 	done
 
-	if [[ "$skipped" = 1 ]]
+	if [[ "$skipped_file" = 1 ]]
 	then
 		echo "One or more file conflicts encountered.  Please resolve the conflicts and run this script again."
 		exit 1
@@ -110,7 +110,7 @@ do
 	if [[ ! -d "$var" ]]; then echo "No such source named '$var', quitting..."; exit 1; fi
 
 	>/dev/null cd "$var"
-	export skipped=0
+	export skipped_file=0
 	if [[ -f ./install.sh ]]
 	then
 		if ./install.sh
