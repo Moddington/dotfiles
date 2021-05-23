@@ -1,8 +1,8 @@
 [user]
-	name = Nathan Janzen
-	email = moddington@gmail.com
+	name = Skye Janzen
+	email = skyejanzen@gmail.com
 [core]
 	editor = vim
-	excludesfile = /home/dundas/.gitignore
+	excludesfile = /home/skye/.gitignore
 [push]
 	default = simple

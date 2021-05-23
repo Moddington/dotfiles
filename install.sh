@@ -101,8 +101,7 @@ export -f default_install
 if [[ -z "$@" ]]; then echo "No sources listed, quitting..."; exit 1; fi
 
 # Ensure submodules are updated
-git submodule init
-git submodule update
+git submodule update --init
 
 # Install selected sources
 for var in "$@"
